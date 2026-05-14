@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {View, Text, Button, StyleSheet} from "react-native-web"
+import {View, Text, Button, StyleSheet, TouchableOpacity} from "react-native-web";
 
 export default function app(){
 const[pontos, setPontos] = useState(0);
@@ -16,20 +16,89 @@ setPontos(0);
 }
 
 return(
-<View>
-<Text>
+<View style={styles.container}>
+<Text style={styles.titulo}>
 🎮 Contador Gamer
 </Text>
-<Text>
+<Text style={styles.pontos}>
 {pontos}
 </Text>
-<View>
-  <Button title="+1" onPress={aumentar}/> 
-   <Button title="-1" onPress={diminuir}/>
-    <Button title="Reset" onPress={resetar}/>
+<View style={styles.areaBotoes}>
+
+<TouchableOpacity onPress={aumentar} style={styles.botao}>
+  <Text style={styles.textoBotao}>+1</Text>
+</TouchableOpacity>
+
+
+<TouchableOpacity onPress={diminuir} style={styles.botao}>
+  <Text style={styles.textoBotao}>-1</Text>
+</TouchableOpacity>
+ 
 </View>
-</View>
+<TouchableOpacity onPress={resetar} style={styles.botaoReset}>
+  <Text style={styles.textoBotao}>Resetar</Text>
+</TouchableOpacity>
+</View> 
+
 
 );
 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#121212',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+
+  titulo: {
+    fontSize: 32,
+    color: '#00ff88',
+    fontWeight: 'bold',
+    marginBottom: 30,
+  },
+
+  pontos: {
+    fontSize: 80,
+    color: '#ffffff',
+    marginBottom: 40,
+    fontWeight: 'bold',
+  },
+
+  areaBotoes: {
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
+
+  button: {
+    backgroundColor: '#00ff88',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 12,
+    marginHorizontal: 10,
+  },
+
+  botao: {
+    backgroundColor: '#00ff88',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 12,
+    marginHorizontal: 10,
+  },
+
+  botaoReset: {
+    backgroundColor: '#ff3b30',
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    borderRadius: 12,
+  },
+
+  textoBotao: {
+    fontSize: 22,
+    color: '#000',
+    fontWeight: 'bold',
+  },
+});
